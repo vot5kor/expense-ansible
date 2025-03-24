@@ -13,8 +13,8 @@
       state: started
       enabled: yes
 
-  # - name: connect to mysql server
-  #   community.mysql.mysql_info:
-  #     login_user: ec2-user
-  #     login_password: ExpenseApp@1
+  - name: connect to mysql server
+    community.mysql.mysql_info:
+      login_user: ec2-user
+      login_password: ExpenseApp@1
       
