@@ -1,0 +1,14 @@
+- name: Configuring backend server
+  hosts: backend
+  become: yes #sudo
+  tasks:
+  - name: disable current nodejs 
+    ansible.builtin.command: dnf module disable nodejs -y
+
+  - name: enable nodejs 
+    ansible.builtin.command: dnf module enable nodejs:20 -y
+  
+  - name: install nodejs
+    ansible.builtin.package:
+      name: nodejs
+      state: present
