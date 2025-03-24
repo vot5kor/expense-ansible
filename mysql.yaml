@@ -8,17 +8,18 @@
     ansible.builtin.package:
       name: mysql-server
       state: installed
+
 # Start MySQL Service
   - name: start and enable mysql server
     ansible.builtin.service:
       name: mysqld
       state: started
       enabled: yes
-  - name: Collect info about databases and version using ~/.my.cnf as a credential file
-    community.mysql.mysql_info:
-    filter:
-    - databases
-    - version
+  # - name: Collect info about databases and version using ~/.my.cnf as a credential file
+  #   community.mysql.mysql_info:
+  #   filter:
+  #   - databases
+  #   - version
 
   - name: connect to mysql server
     community.mysql.mysql_info:
