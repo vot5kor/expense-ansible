@@ -1,7 +1,7 @@
 - name: Configuring mysql server
   hosts: mysql
   become: yes #sudo
-  Vars:
+  vars:
    mysql_root_password: ExpenseApp@1
   tasks:
   - name: Install mysql libraries
