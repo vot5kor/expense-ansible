@@ -15,7 +15,7 @@
     loop:
     - nodejs
     - mysql
-
+   
   - name: cerate expense user
     ansible.builtin.user:
       name: expense
@@ -44,6 +44,11 @@
     ansible.builtin.copy:
       src: backend.service
       dest: /etc/systemd/system/backend.service
+
+  - name: install ansible libraries
+    ansible.builtin.pip:
+      name: PyMySQL
+      executable: pip3.9
 
   - name: import mysql data 
     community.mysql.mysql_db:
