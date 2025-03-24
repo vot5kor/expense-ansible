@@ -2,7 +2,7 @@
   hosts: mysql
   become: yes #sudo
   Vars:
-    mysql_root_password: ExpenseApp@1
+   mysql_root_password: ExpenseApp@1
   tasks:
   - name: install mysql server
     ansible.builtin.package:
@@ -20,7 +20,6 @@
   #   filter:
   #   - databases
   #   - version
-
   - name: connect to mysql server
     community.mysql.mysql_info:
       login_user: root
