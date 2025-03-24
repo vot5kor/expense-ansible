@@ -1,8 +1,8 @@
 - name: Configuring mysql server
   hosts: mysql
   become: yes #sudo
-  # Vars:
-  #  mysql_root_password: ExpenseApp@1
+  Vars:
+   mysql_root_password: ExpenseApp@1
   tasks:
   - name: Install mysql libraries
     ansible.builtin.pip:
@@ -28,7 +28,7 @@
   - name: connect to mysql server
     community.mysql.mysql_info:
       login_user: root
-      login_password: ExpenseApp@1
+      login_password: "{{ mysql_root_password }}"
       login_host: mysql.tuktukride.online
     register: mysql_info
     ignore_errors: true
@@ -39,7 +39,7 @@
       msg: "mysql info: {{ mysql_info }}"
 
   - name: setup root password
-    ansible.builtin.command: " mysql_secure_installation --set-root-pass ExpenseApp@1 "
+    ansible.builtin.command: " mysql_secure_installation --set-root-pass {{ mysql_root_password }} "
     when: mysql_info.failed is true
 
 
