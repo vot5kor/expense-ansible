@@ -41,7 +41,7 @@
       path: /app
 
   - name: Copy bakend service
-    ansible.builtin.copy:
+    ansible.builtin.copy:  # It will search in files folder
       src: backend.service
       dest: /etc/systemd/system/backend.service
 
@@ -57,9 +57,9 @@
     community.mysql.mysql_db:
       state: import
       name: all
-      login_user: root
-      login_password: ExpenseApp@1
-      login_host: mysql.tuktukride.online
+      login_user: "{{ MYSQL_USER }}"
+      login_password: "{{ MYSQL_PASSWORD }}"
+      login_host: "{{ MYSQL_HOST }}"
       target: /app/schema/backend.sql
 
   - name: daemon reload and re-start service
