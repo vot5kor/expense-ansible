@@ -1,6 +1,10 @@
 - name: Configuring backend server
   hosts: backend
   become: yes #sudo
+  vars:
+    MYSQL_USER: root
+    MYSQL_PASSWORD: ExpenseApp@1
+    MYSQL_HOST: mysql.tuktukride.online
   tasks:
   - name: disable current nodejs 
     ansible.builtin.command: dnf module disable nodejs -y
@@ -60,7 +64,7 @@
       login_user: "{{ MYSQL_USER }}"
       login_password: "{{ MYSQL_PASSWORD }}"
       login_host: "{{ MYSQL_HOST }}"
-      target: /app/schema/backend.sql
+      target: /app/schema/backend.sql 
 
   - name: daemon reload and re-start service
     ansible.builtin.systemd_service:
